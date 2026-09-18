@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>STREasy — Portfolio Demo</title>
+<style>
+:root{--navy:#0f172a;--slate:#475569;--blue:#2563eb;--light:#f8fafc;--line:#e2e8f0;--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--navy);line-height:1.5;background:#fff}
+.container{width:min(1200px,calc(100% - 32px));margin:auto}
+.hero{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;text-align:center;padding:76px 0}
+.hero h1{font-size:clamp(2rem,5vw,3rem)}
+.hero p{max-width:600px;margin:12px auto 0;color:#dbeafe}
+section{padding:48px 0}
+h2{font-size:clamp(1.4rem,3vw,1.8rem);text-align:center;margin-bottom:8px}
+.lead{text-align:center;color:var(--slate);max-width:600px;margin:0 auto 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.card{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:#fff;display:flex;flex-direction:column}
+.card h3{margin-bottom:8px;font-size:1.1rem}
+.card p{color:var(--slate);font-size:.95rem;margin-bottom:14px;flex-grow:1}
+.card a{display:inline-block;text-align:center}
+footer{background:var(--navy);color:#fff;text-align:center;padding:28px 14px}
+footer p{color:#cbd5e1;font-size:.85rem}
+@media(max-width:640px){.hero{padding:56px 0}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="container"><h1>STREasy — Portfolio Demo</h1><p>Raccolta di demo professionali per hospitality, ticketing, membership e e-commerce B2B.</p></div></header>
+
+<main>
+<section><div class="container"><h2>Demo disponibili</h2><p class="lead">Ogni demo è una pagina singola, responsive e navigabile, pensata per mostrare flussi reali in versione simulata.</p><div class="grid"><article class="card"><h3>SupplyPro</h3><p>E-commerce B2B per forniture professionali con catalogo, filtri, area riservata aziende e preventivi per quantità.</p><a class="cta" href="./supplypro/" target="_blank" rel="noopener">Apri demo</a></article><article class="card"><h3>Hospitality</h3><p>Piattaforma per short-term rental e agriturismi: strutture, dettagli camere, check-in online e automazioni ospiti.</p><a class="cta" href="./hospitality/" target="_blank" rel="noopener">Apri demo</a></article><article class="card"><h3>Ticketing</h3><p>Gestione eventi e biglietteria: sagre, workshop e concerti con dashboard organizzatore e acquisto simulato.</p><a class="cta" href="./ticketing/" target="_blank" rel="noopener">Apri demo</a></article><article class="card"><h3>Membership</h3><p>Sistema di abbonamenti e club con piani Base/Pro/Premium e area riservata per contenuti membri.</p><a class="cta" href="./membership/" target="_blank" rel="noopener">Apri demo</a></article></div></div></section>
+</main>
+
+<footer><p><strong>Demo dimostrative realizzate per portfolio · STREasy</strong></p><p>Nessun dato reale o integrazione attiva in queste pagine.</p></footer>
+</body>
+</html>
