@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>STREasy Ticketing — Demo</title>
+<style>
+:root{--navy:#0f172a;--slate:#475569;--blue:#2563eb;--light:#f8fafc;--line:#e2e8f0;--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--navy);line-height:1.5;background:#fff}
+.container{width:min(1200px,calc(100% - 32px));margin:auto}
+.hero{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;text-align:center;padding:76px 0}
+.hero h1{font-size:clamp(2rem,5vw,3rem)}
+.hero p{max-width:600px;margin:12px auto 0;color:#dbeafe}
+nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.navin{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:1.2rem;font-weight:800}
+.navlinks{display:flex;gap:12px;flex-wrap:wrap}
+a{color:var(--slate);text-decoration:none;font-weight:600}
+.cta,button{border:0;border-radius:8px;background:var(--blue);color:#fff;padding:8px 12px;font-weight:700;cursor:pointer}
+section{padding:48px 0}
+h2{font-size:clamp(1.4rem,3vw,1.8rem);text-align:center;margin-bottom:8px}
+.lead{text-align:center;color:var(--slate);max-width:600px;margin:0 auto 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:#fff}
+.card h3{margin-bottom:6px;font-size:1.05rem}
+.card p{color:var(--slate);font-size:.9rem;margin-bottom:10px}
+.card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.price{font-weight:800;font-size:1.1rem}
+.badge{background:#eff6ff;color:var(--blue);padding:4px 8px;border-radius:6px;font-size:.75rem;font-weight:700}
+footer{background:var(--navy);color:#fff;text-align:center;padding:28px 14px}
+footer p{color:#cbd5e1;font-size:.85rem}
+.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.6);align-items:center;justify-content:center;padding:12px}
+.modal.active{display:flex}
+.modal-box{background:#fff;border-radius:var(--radius);padding:20px;width:min(520px,100%);max-height:90vh;overflow:auto}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.close{padding:0;color:var(--slate);background:transparent;font-size:1.5rem}
+label{display:block;margin:10px 0 4px;font-size:.85rem;font-weight:700}
+input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:8px;padding:10px;font:inherit}
+.notice{margin-top:10px;color:var(--slate);font-size:.75rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:24px}
+.stat{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:#fff;text-align:center}
+.stat b{display:block;font-size:1.5rem;margin-bottom:4px}
+@media(max-width:640px){.navin{flex-direction:column;padding:8px 0}.navlinks{justify-content:center}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="container"><h1>STREasy Ticketing</h1><p>Demo per vendita biglietti e gestione eventi: sagre, concerti, workshop.</p></div></header>
+<nav><div class="container navin"><div class="brand">STREasy</div><div class="navlinks"><a href="#eventi">Eventi</a><a href="#organizer">Area organizzatore</a><a href="#contatti">Contatti</a></div></div></nav>
+
+<main>
+<section id="eventi"><div class="container"><h2>Eventi demo</h2><p class="lead">Esempi di eventi con biglietteria simulata.</p><div class="grid" id="events"></div></div></section>
+
+<section id="organizer"><div class="container"><h2>Area organizzatore</h2><p class="lead">Dashboard simulata per chi gestisce gli eventi.</p><div class="stats"><div class="stat"><b>3</b>Eventi attivi</div><div class="stat"><b>142</b>Biglietti venduti</div><div class="stat"><b>€ 1.890</b>Incasso totale</div></div></div></section>
+
+<section id="contatti"><div class="container"><h2>Contatti</h2><p class="lead">Demo di form per richieste su eventi e biglietteria.</p><div class="card" style="max-width:520px;margin:auto"><form onsubmit="simulate(event)"><label>Nome</label><input required><label>Email</label><input required type="email"><label>Messaggio</label><textarea required></textarea><button type="submit" style="margin-top:12px">Invia</button><p class="notice">Demo: nessun dato viene inviato.</p></form></div></div></section>
+</main>
+
+<footer><p><strong>Demo dimostrativa realizzata per portfolio · STREasy</strong></p><p>Nessun dato reale o integrazione attiva.</p></footer>
+
+<div class="modal" id="detail"><div class="modal-box"><div class="modal-head"><h3 id="modal-title">Evento</h3><button class="close" onclick="closeModal('detail')">&times;</button></div><div id="modal-body"></div></div></div>
+
+<script>
+const events=[
+  {id:1,name:'Sagra del Tartufo',date:'2026-10-12',time:'10:00',place:'Mercato storico',price:15,desc:'Giornata dedicata al tartufo con degustazioni e stand locali.',capacity:200,sold:142},
+  {id:2,name:'Workshop Fotografia Paesaggio',date:'2026-10-20',time:'09:00',place:'Val d\'Orcia',price:45,desc:'Workshop di una giornata con fotografo professionista.',capacity:20,sold:12},
+  {id:3,name:'Concerto Jazz in Piazza',date:'2026-11-05',time:'21:00',place:'Piazza principale',price:10,desc:'Serata jazz con band locali e ospiti speciali.',capacity:300,sold:87}
+];
+const grid=document.getElementById('events');
+grid.innerHTML=events.map(e=>`<article class="card"><span class="badge">Evento</span><h3>${e.name}</h3><p>${e.date} · ${e.time} · ${e.place}</p><p>${e.desc}</p><div class="meta"><span class="price">€ ${e.price}</span><button onclick="openDetail(${e.id})">Biglietti</button></div></article>`).join('');
+
+function openDetail(id){
+  const e=events.find(x=>x.id===id);
+  document.getElementById('modal-title').textContent=e.name;
+  document.getElementById('modal-body').innerHTML=`
+    <p><b>Data:</b> ${e.date} · ${e.time}</p>
+    <p><b>Luogo:</b> ${e.place}</p>
+    <p>${e.desc}</p>
+    <p><b>Prezzo biglietto:</b> € ${e.price}</p>
+    <p><b>Capienza:</b> ${e.capacity} · <b>Venduti:</b> ${e.sold}</p>
+    <form onsubmit="buyTicket(event,'${e.name.replace(/'/g,"\\'")}')"><label>Nome</label><input required><label>Email</label><input required type="email"><label>Quantitàªª</label><input type="number" min="1" max="5" value="1" required><button type="submit" style="margin-top:12px">Acquista (demo)</button><p class="notice">Demo: nessun ordine reale, nessun dato inviato.</p></form>
+  `;
+  document.getElementById('detail').classList.add('active');
+}
+function buyTicket(e,name){e.preventDefault();alert(`Demo: acquisto di biglietti per "${name}" simulato.`);closeModal('detail')}
+function closeModal(id){document.getElementById(id).classList.remove('active')}
+function simulate(e,msg){e.preventDefault();alert(msg||'Demo: form simulato.');e.target.closest('.modal')?.classList.remove('active')}
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('active')}));
+</script>
+</body>
+</html>
