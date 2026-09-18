@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>STREasy Membership — Demo</title>
+<style>
+:root{--navy:#0f172a;--slate:#475569;--blue:#2563eb;--light:#f8fafc;--line:#e2e8f0;--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--navy);line-height:1.5;background:#fff}
+.container{width:min(1200px,calc(100% - 32px));margin:auto}
+.hero{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;text-align:center;padding:76px 0}
+.hero h1{font-size:clamp(2rem,5vw,3rem)}
+.hero p{max-width:600px;margin:12px auto 0;color:#dbeafe}
+nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.navin{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:1.2rem;font-weight:800}
+.navlinks{display:flex;gap:12px;flex-wrap:wrap}
+a{color:var(--slate);text-decoration:none;font-weight:600}
+.cta,button{border:0;border-radius:8px;background:var(--blue);color:#fff;padding:8px 12px;font-weight:700;cursor:pointer}
+section{padding:48px 0}
+h2{font-size:clamp(1.4rem,3vw,1.8rem);text-align:center;margin-bottom:8px}
+.lead{text-align:center;color:var(--slate);max-width:600px;margin:0 auto 24px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.plan{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:#fff;display:flex;flex-direction:column}
+.plan h3{margin-bottom:6px}
+.plan .price{font-size:1.8rem;font-weight:800;margin:10px 0}
+.plan ul{list-style:none;margin:12px 0 16px}
+.plan li{padding:6px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.plan li:last-child{border:0}
+.plan .bottom{margin-top:auto}
+footer{background:var(--navy);color:#fff;text-align:center;padding:28px 14px}
+footer p{color:#cbd5e1;font-size:.85rem}
+.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.6);align-items:center;justify-content:center;padding:12px}
+.modal.active{display:flex}
+.modal-box{background:#fff;border-radius:var(--radius);padding:20px;width:min(520px,100%);max-height:90vh;overflow:auto}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.close{padding:0;color:var(--slate);background:transparent;font-size:1.5rem}
+label{display:block;margin:10px 0 4px;font-size:.85rem;font-weight:700}
+input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:8px;padding:10px;font:inherit}
+.notice{margin-top:10px;color:var(--slate);font-size:.75rem}
+.members-area{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:#fff;max-width:720px;margin:auto}
+.members-area h3{margin-bottom:10px}
+.members-area ul{list-style:none}
+.members-area li{padding:8px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.members-area li:last-child{border:0}
+@media(max-width:640px){.navin{flex-direction:column;padding:8px 0}.navlinks{justify-content:center}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="container"><h1>STREasy Membership</h1><p>Demo per abbonamenti, club e aree riservate con contenuti per membri.</p></div></header>
+<nav><div class="container navin"><div class="brand">STREasy</div><div class="navlinks"><a href="#piani">Piani</a><a href="#area-riservata">Area riservata</a><a href="#contatti">Contatti</a></div></div></nav>
+
+<main>
+<section id="piani"><div class="container"><h2>Piani di abbonamento</h2><p class="lead">Esempio di membership con livelli Base, Pro e Premium.</p><div class="plans"><article class="plan"><h3>Base</h3><div class="price">€ 9/mese</div><ul><li>Accesso area membri</li><li>Contenuti base</li><li>Supporto email</li></ul><div class="bottom"><button onclick="openJoin('Base')">Scegli Base</button></div></article><article class="plan"><h3>Pro</h3><div class="price">€ 19/mese</div><ul><li>Tutto quello che c'è in Base</li><li>Contenuti avanzati</li><li>Webinar mensili</li></ul><div class="bottom"><button onclick="openJoin('Pro')">Scegli Pro</button></div></article><article class="plan"><h3>Premium</h3><div class="price">€ 39/mese</div><ul><li>Tutti i contenuti</li><li>Consulenza 1:1</li><li>Accesso anticipato</li></ul><div class="bottom"><button onclick="openJoin('Premium')">Scegli Premium</button></div></article></div></div></section>
+
+<section id="area-riservata"><div class="container"><h2>Area riservata (demo)</h2><p class="lead">Esempio di contenuti visibili solo ai membri.</p><div class="members-area"><h3>Contenuti per membri</h3><ul><li>Video lezione: “Introduzione alla membership”</li><li>PDF: “Guida operativa per i membri”</li><li>Community: accesso al gruppo privato</li></ul><button onclick="simulate(event,'Demo: accesso area riservata simulato.')" style="margin-top:12px">Entra nell'area riservata</button></div></div></section>
+
+<section id="contatti"><div class="container"><h2>Contatti</h2><p class="lead">Demo di form per richieste su membership e abbonamenti.</p><div class="card" style="max-width:520px;margin:auto;border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:#fff"><form onsubmit="simulate(event)"><label>Nome</label><input required><label>Email</label><input required type="email"><label>Messaggio</label><textarea required></textarea><button type="submit" style="margin-top:12px">Invia</button><p class="notice">Demo: nessun dato viene inviato.</p></form></div></div></section>
+</main>
+
+<footer><p><strong>Demo dimostrativa realizzata per portfolio · STREasy</strong></p><p>Nessun dato reale o integrazione attiva.</p></footer>
+
+<div class="modal" id="join"><div class="modal-box"><div class="modal-head"><h3 id="modal-title">Abbonamento</h3><button class="close" onclick="closeModal('join')">&times;</button></div><form onsubmit="subscribe(event)"><label>Nome</label><input required><label>Email</label><input required type="email"><label>Note (opzionale)</label><textarea></textarea><button type="submit" style="margin-top:12px">Richiedi abbonamento (demo)</button><p class="notice">Demo: nessun dato viene inviato, nessun pagamento reale.</p></form></div></div>
+
+<script>
+let selectedPlan='';
+function openJoin(plan){selectedPlan=plan;document.getElementById('modal-title').textContent='Abbonamento '+plan;document.getElementById('join').classList.add('active')}
+function closeModal(id){document.getElementById(id).classList.remove('active')}
+function subscribe(e){e.preventDefault();alert('Demo: richiesta abbonamento "'+selectedPlan+'" simulata.');closeModal('join')}
+function simulate(e,msg){e.preventDefault();alert(msg||'Demo: form simulato.');e.target.closest('.modal')?.classList.remove('active')}
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('active')}));
+</script>
+</body>
+</html>
