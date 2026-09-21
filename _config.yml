@@ -1,0 +1,15 @@
+# GitHub Pages configuration
+# Site will be published at:
+# https://shorttermrentaleasy-cyber.github.io/streasy-demos/
+
+# Use default Jekyll theme (optional)
+theme: null
+
+# Disable Jekyll processing for pure static site
+include:
+  - "*.html"
+  - legnomarchetti
+  - hospitality
+  - membership
+  - supplypro
+  - ticketing
